@@ -7,6 +7,7 @@
 --     wykorzystaj funkcję SUBSTRING do uzyskania części kolumny znakowej oraz LOWER do zwrócenia wyniku małymi literami.
 --     wykorzystaj operator (+) do połączenia napisów.
 
-select lower(firstname + middleinitial + substring(lastname, 0, 3)) as email_name
+select replace(lower(firstname + middleinitial + substring(lastname, 0, 3)),' ','') as email_name
 from member
-where lastname = 'Anderson';
+where lastname = 'Anderson'
+order by email_name;
