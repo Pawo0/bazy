@@ -30,6 +30,16 @@ where not exists(select 1
                  where Cu.CustomerID = O.CustomerID
                    and Ca.CategoryName = 'Confections')
 
+select Cu.CompanyName, Cu.Phone
+from Customers Cu
+where Cu.CustomerID not in(select O.CustomerID
+                 from Orders O
+                          inner join dbo.[Order Details] "[O D]" on O.OrderID = "[O D]".OrderID
+                          inner join dbo.Products P on P.ProductID = "[O D]".ProductID
+                          inner join dbo.Categories Ca on Ca.CategoryID = P.CategoryID
+                 where Cu.CustomerID = O.CustomerID
+                   and Ca.CategoryName = 'Confections')
+
 
 -- Wybierz nazwy i numery telefonów klientów, którzy w 1997r nie kupowali produktów z kategorii ‘Confections’
 select Cu.CompanyName, Cu.Phone

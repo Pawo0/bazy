@@ -12,9 +12,9 @@ from member m
 -- Napisz polecenie, które wyświetla listę dzieci będących członkami biblioteki (baza library). Interesuje nas imię,
 -- nazwisko, data urodzenia dziecka, adres zamieszkania dziecka oraz imię i nazwisko rodzica.
 -- ale te dane sa losowe xd
-select m1.firstname, m1.lastname, j.birth_date, street, m2.lastname
+select m_child.firstname, m_child.lastname, j.birth_date, street, m_adult.lastname
 from juvenile j
-         inner join member m1 on j.member_no = m1.member_no
+         inner join member m_child on j.member_no = m_child.member_no
          inner join adult a on j.adult_member_no = a.member_no
-         inner join member m2 on a.member_no = m2.member_no
+         inner join member m_adult on a.member_no = m_adult.member_no
 

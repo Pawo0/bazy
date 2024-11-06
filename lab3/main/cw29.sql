@@ -14,10 +14,9 @@ where E2.EmployeeID is null;
 
 -- Napisz polecenie, które wyświetla pracowników, którzy mają podwładnych (baza northwind)
 -- 1
-select E1.EmployeeID, E1.FirstName, E1.LastName
-from Employees E1
-         inner join Employees E2 on E1.EmployeeID = E2.ReportsTo
-group by E1.EmployeeID, E1.FirstName, E1.LastName
+select distinct ES.EmployeeID, ES.FirstName, ES.LastName
+from Employees ES
+         inner join Employees EP on ES.EmployeeID = EP.ReportsTo
 
 -- 2
 select *
@@ -28,7 +27,7 @@ where e.EmployeeID in (select distinct ReportsTo
 -- 3
 select *
 from Employees e
-where exists(select 1
+where exists(select *
              from Employees e2
              where e2.ReportsTo = e.EmployeeID)
 
